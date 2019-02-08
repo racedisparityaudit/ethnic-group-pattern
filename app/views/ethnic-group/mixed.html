@@ -1,0 +1,83 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+
+{% block beforeContent %}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "/"
+  }) }}
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% from "input/macro.njk" import govukInput %}
+      {% from "fieldset/macro.njk" import govukFieldset %}
+      {% from "radios/macro.njk" import govukRadios %}
+
+      {% set mixedOtherHtml %}
+      {{ govukInput({
+        id: "ethnicity-white-other",
+        name: "ethnicity-white-other",
+        classes: "govuk-!-width-one-half",
+        label: {
+          text: "Other Mixed ethnic group (optional)"
+        }
+      }) }}
+      {% endset -%}
+
+      {{ govukRadios({
+        idPrefix: "ethnic-group",
+        name: "ethnic-group",
+        fieldset: {
+          legend: {
+            text: "Which one best describes your Mixed ethnic group or background?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "white-black-caribbean",
+            text: "White and Black Caribbean",
+            id: 5
+          },
+          {
+            value: "white-black-african",
+            text: "White and Black African",
+            id: 6
+          },
+          {
+            value: "white-asian",
+            text: "White and Asian",
+            id: 7
+          },
+          {
+            value: "mixed-other",
+            text: "Any other Mixed or multiple ethnic background",
+            id: 8,
+            conditional: {
+              html: mixedOtherHtml
+            }
+          }
+        ]
+      }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+    </div>
+</div>
+
+{% endblock %}

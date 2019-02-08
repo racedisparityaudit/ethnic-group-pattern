@@ -1,0 +1,88 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+
+{% block beforeContent %}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "/"
+  }) }}
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% from "input/macro.njk" import govukInput %}
+      {% from "fieldset/macro.njk" import govukFieldset %}
+      {% from "radios/macro.njk" import govukRadios %}
+
+      {% set asianOtherHtml %}
+      {{ govukInput({
+        id: "ethnicity-asian-other",
+        name: "ethnicity-asian-other",
+        classes: "govuk-!-width-one-half",
+        label: {
+          text: "Other Asian background (optional)"
+        }
+      }) }}
+      {% endset -%}
+
+      {{ govukRadios({
+        idPrefix: "ethnic-group",
+        name: "ethnic-group",
+        fieldset: {
+          legend: {
+            text: "Which one best describes your Asian ethnic group or background?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "indian",
+            text: "Indian",
+            id: 9
+          },
+          {
+            value: "pakistani",
+            text: "Pakistani",
+            id: 10
+          },
+          {
+            value: "bangladeshi",
+            text: "Bangladeshi",
+            id: 11
+          },
+          {
+            value: "chinese",
+            text: "Chinese",
+            id: 12
+          },
+          {
+            value: "asian-other",
+            text: "Any other Asian background",
+            id: 13,
+            conditional: {
+              html: asianOtherHtml
+            }
+          }
+        ]
+      }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,76 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+
+{% block beforeContent %}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "/"
+  }) }}
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% from "input/macro.njk" import govukInput %}
+      {% from "fieldset/macro.njk" import govukFieldset %}
+      {% from "radios/macro.njk" import govukRadios %}
+
+      {% set whiteOtherHtml %}
+      {{ govukInput({
+        id: "ethnicity-white-other",
+        name: "ethnicity-white-other",
+        classes: "govuk-!-width-one-half",
+        label: {
+          text: "Other White background (optional)"
+        }
+      }) }}
+      {% endset -%}
+
+      {{ govukRadios({
+        idPrefix: "ethnic-group",
+        name: "ethnic-group",
+        fieldset: {
+          legend: {
+            text: "Which one best describes your White ethnic group or background?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "british",
+            text: "Welsh, English, Scottish, Northern Irish or British"
+          },{
+            value: "irish",
+            text: "Irish"
+          },{
+            value: "gypsy-irish-traveller",
+            text: "Gypsy or Irish Traveller"
+          },{
+            value: "white-other",
+            text: "Any other White background",
+            conditional: {
+              html: whiteOtherHtml
+            }
+          }
+        ]
+      }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+    </div>
+</div>
+
+{% endblock %}
