@@ -29,9 +29,9 @@
       {{ govukInput({
         id: "ethnicity-asian-other",
         name: "ethnicity-asian-other",
-        classes: "govuk-!-width-one-half",
+        classes: "govuk-!-width-two-thirds",
         label: {
-          text: "Other Asian background (optional)"
+          text: "Your Asian background (optional)"
         }
       }) }}
       {% endset -%}
@@ -41,7 +41,7 @@
         name: "ethnic-group",
         fieldset: {
           legend: {
-            text: "Which one best describes your Asian ethnic group or background?",
+            text: "Which one best describes your background?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
@@ -69,7 +69,7 @@
           },
           {
             value: "asian-other",
-            text: "Any other Asian background",
+            text: "Another Asian background",
             id: 13,
             conditional: {
               html: asianOtherHtml

@@ -29,9 +29,9 @@
         {{ govukInput({
           id: "ethnicity-mixed-other",
           name: "ethnicity-mixed-other",
-          classes: "govuk-!-width-one-half",
+          classes: "govuk-!-width-two-thirds",
           label: {
-            text: "Any other ethnic group (optional)"
+            text: "Your ethnic background (optional)"
           }
         }) }}
       {% endset -%}
@@ -41,7 +41,7 @@
         name: "ethnic-group",
         fieldset: {
           legend: {
-            text: "Which one best describes your ethnic group or background?",
+            text: "Which one best describes your background?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
@@ -54,7 +54,7 @@
           },
           {
             value: "any-other",
-            text: "Any other ethnic group",
+            text: "Another ethnic background",
             id: 18,
             conditional: {
               html: otherOtherHtml
